@@ -1,0 +1,678 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<title>lesson</title>
+</head>
+<body>
+<h1> Підівчити урок генератор символи 14 - 15</h1>
+<h2> Функція колбек, Promise</h2>
+</body>
+
+<!--ES6-->
+<!--Змінні-->
+<!-- <script type="text/javascript">
+var q = 1 
+	console.log(q)
+	q = 2
+	console.log(q)
+	q = 'w'
+	console.log(q)
+	///////////////////////////////////////////////
+	const MY_CONST = 1
+	//MY_CONST = 2 не можна змінити
+	const MY_CONST_ARRAY = [1,2,3]
+	MY_CONST_ARRAY[1] = 54
+	console.log(MY_CONST_ARRAY)
+	/////////////////////////////////////////////////
+	let a = 1
+	console.log(a)
+	a = '2'
+	console.log(a)
+	/////////////////////
+	v = 1
+	var v //work
+	var v//work
+
+//	l = 1
+//	let l //error
+//	let l//error (let працює як в java)
+////////////////////////////////////////////
+for(var i=0; i<5; i++){
+	setTimeout(function(){
+		console.log(i);
+	}, 3000) //цикл виконається і після 3-х секунд виведеться число просто 5 бо цикл виконається швидше у var ми створюємо 1 переміну яку записуємо по силці
+	//виправити помилку можна змінивши var na let 
+
+}
+
+ </script> -->
+
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<!--Функції, Стрілочні функції-->
+ <!-- <script type="text/javascript">
+const origin = function(){
+	return 100;
+}
+console.log(origin())
+
+//Переписуєм функцію зверху за допомогою стрілочної функції
+const arrow = (num,mun2) =>{
+	return 150 + num + mun2;
+}
+console.log(arrow(50,2));//якщо  arrow = (num, num2) return 150 + num + mun2; а arrow(50) верне NaN
+
+//Переписуєм функцію зверху за допомогою стрілочної функції спрощуємо запис
+const arrow2 = (num) =>	 150 + num 
+console.log(arrow2(1))
+//Ще спрощуємо зверху вираз
+const arrow3 = num =>	 150 + num 
+console.log(arrow3(1))
+
+const obj = {
+	name: 'WFM',
+
+	logName: function(){
+		console.log(this.name)
+	},
+	logName2: function(){
+		var self = this//щоб виправити це неподобство ми пишемо
+		setTimeout(function(){
+		//	console.log(this.name)//виведе пусте поле тому що коли ми створюємо функцію через слово fuction вона створює свій контекст і this не являється обєктом this а обєктом функції
+		console.log(self.name)
+	})
+		
+	},
+//Вирішення цієї(this) проблеми 2-ий спосіб
+logName3: function(){
+		setTimeout =>
+		//	console.log(this.name)//виведе пусте поле тому що коли ми створюємо функцію через слово fuction вона створює свій контекст і this не являється обєктом this а обєктом функції
+		console.log(this.name)
+
+		
+	}
+}
+
+
+obj.logName()
+obj.logName2()
+obj.logName3()
+</script> -->
+
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--Обєкти-->
+<!-- <script type="text/javascript">
+const name = 'q'
+const age = 20
+const obj = {
+//	name: name, // : це присвоєнна = тут не працює
+//	age: age
+//////////////////
+//скорочений запис
+name,
+age
+}
+console.log(obj);//{name: "q", age: 20}
+
+const createPerson = (name,surname) => {
+const fullname = name + ' ' + surname;
+	return fullname;
+}
+const createPerson2 = (name,surname) => {
+const fullname = name + ' ' + surname;
+	//return { 
+	//	fullname:fullname,
+	//	name: name,
+	//	surname: surname};
+	//скорочуємо код вище
+//	return {
+//		fullname,
+//		name,
+//		surname};
+//////////////////////////
+return {
+		fullname,
+		name,
+		surname,
+		// getJob:function(){
+		// 	return 'front end' 
+		// }
+		//скорочений запис
+		getJob(){
+			return 'front end' 
+		}
+}
+}
+
+const createPerson3 = (name,surname,fieldName, fieldPostfix) => {
+const fullname = name + ' ' + surname;
+const person = {
+		fullname,
+		name,
+		surname,
+		getJob(){
+			return 'front end' 
+		}
+}
+let finalFieldName = fieldName + fieldPostfix;// finalFieldName -імя поля яке ми додаємо
+person[finalFieldName] = 50;// 50 - значення поля яке запишемо
+return person;
+}
+
+console.log(createPerson('a', 'c'))//a c
+console.log(createPerson2('a', 'c'))//fullname: "a c", name: "a", surname: "c"
+console.log(createPerson2('a', 'c'))//{fullname: "a c", name: "a", surname: "c", getJob: ƒ}
+console.log(createPerson2('a', 'c').getJob())//front end 
+
+const person = createPerson('a', 'c')
+console.log(person)//a c
+
+console.log(createPerson3('a', 'c', 'car', '-name'))
+//скорочуємо запис з createPerson3
+const createPerson4 = (name,surname,fieldName, fieldPostfix) => {
+const fullname = name + ' ' + surname;
+ return{
+		fullname,
+		name,
+		surname,
+		getJob(){
+			return 'front end' ;
+		},
+		[fieldName + fieldPostfix]: 100//добавляємо нове поле
+};
+};
+
+console.log(createPerson4('a', 'c', 'car', 'modale'))
+</script> -->
+
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--Деструктуризація-->
+<!-- <script type="text/javascript">
+let obj={
+	name: 'WFM',
+	age: 20
+};
+//let name = obj.name
+//let age = obj.age
+//скорочуємо запис вони ідентичні
+//let {name} = obj // дістаємо поле з obj і {name} повинно співпадати з полем obj а іменно name
+//let {age} = obj 
+// ще скорочуємо запис вони ідентичні
+//let {name,age} = obj 
+//console.log(name, age)
+//записуємо в нові змінні
+//let {name: n,age: a} = obj //n - нова змінна в яку заносимо name
+//console.log(n, a)
+//Деструктуризація для масива
+let array = ['WFM' , 30, 'red'];
+
+// let name = array[0];
+// let age = array[1];
+// let color = array[2];
+//скорочуємо запис
+//let [name, age, color] = array;
+//витягаємо конкретні елементи name i color  a age не витягуємо тільки треба коми поставити а елемент не вказати
+//let [name,, color] = array; // aбо let [,, color] = array; буде тільки color
+//console.log(name,  color)//WFM red
+let [,, color='red'] = array;
+console.log( color)//red
+</script> -->
+
+
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--Rest i Spread оператори-->
+<!-- <script type="text/javascript">
+function logString(num,str, str2,str3){//Завдяки оператору Rest ми перепишемо цей метод
+	//var args - псевдо масив
+	var args = Array.prototype.slice.call(arguments)//записуємо всі параметри які нам прийшли в масив
+
+console.log(num,args)
+}
+
+function logString2(num, ...args){// Rest = ...args | args - це справжній масив і ніяких перетворень для нього не потрібні
+
+	var args = Array.prototype.slice.call(arguments)//записуємо всі параметри які нам прийшли в масив
+
+console.log(num,args)
+}
+logString2(20, 'WFM', 'WFM2','WFM2', 'WFM3')
+
+let spreadArray = ['WFM', 'WFM2','WFM2', 'WFM3']; 
+logString(20, ...spreadArray)//  ...spreadArray - це масив який розгортає свої значення через ... 
+</script> -->
+
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--Цикли-->
+<!-- <script type="text/javascript">
+const array = [1,2,3,4,5]
+// for(let i = 0; i < array.length; i++){
+// 	console.log(array[i])
+// }
+
+// array.forEach(function(item){ //прототип у обєкта array тому можемо звертатися до нього по крапці | той же самий цикл що вище
+// console.log(item)
+// })
+
+for(let item of array){//в циклі for item через of записуємо значення
+	console.log(item)
+}
+
+for(let item of 'ABCD'){
+	console.log(item)
+}
+</script> -->
+
+
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--Класси-->
+<!-- <script type="text/javascript">
+//Як колись створювалися класи
+// function Car (name) {
+// 	this.name = name;
+// }
+// Car.prototype.logName = function(){
+// 	console.log(this.name);
+// }
+// let car = new Car('Audi')
+// car.logName();
+//Новий
+// class Car {
+// 	constructor(name){
+//    this.name = name;
+// 	}
+
+// 	logName(){
+// 		console.log(this.name);	
+// 	}
+// 	static staticFunc(){
+// 		console.log("I am static")
+// 	}
+
+// }
+// let car = new Car('BMW');
+// //car.logName();
+// console.log(car.logName == Car.prototype.logName) // true
+// Car.staticFunc()
+class Car {
+	constructor(name){
+   this.name = name;
+   console.log('Car constructor')
+	}
+
+	logName(){
+		console.log('Car name is: ', this.name);	
+	}
+	
+}
+
+class BMW extends Car{
+	constructor(name){
+	super(name); //викликаємо констректор батьківський
+
+	console.log('BMW constructor')
+	}
+logName(){
+	super.logName()//викличеться батьківський
+	console.log('BMW name is: ', this.name);	//переписали клас або @Override java
+}
+
+}
+let bmw = new BMW('x6');
+bmw.logName();
+
+</script> -->
+
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--Set WeakSet-->
+<!--Set - це спеціальна констрекція масиво подібна яка може тримати в собі різні значення і зручно з нею працювати.В Set зберігаються тільки унікальні значення-->
+<!--WeakSet - -->
+<!-- <script type="text/javascript">
+let set = new Set();
+set.add(10);
+set.add('Hello');
+
+console.log(set.size)//2
+console.log(set)//Set(2) {10, "Hello"}
+set.add({}); //добавляємо пості значення
+console.log(set)//Set(3) {10, "Hello", {…}}
+set.add(10);
+set.add(10);
+set.add(10);
+set.add(10);
+console.log(set)//3 
+
+let set1 = new Set([1,2,3,4,4,5,3]);//всі не унікальні значення не запишуться
+console.log(set1)//Set(5) {1, 2, 3, 4, 5}
+let set2 = new Set().add(2).add(3)//чейнить - писати цепочку різних методів
+console.log(set2)
+
+//Робота з даними в середині Set
+
+console.log('Set has', set2.has(3))//перевіряємо чи є 3 в масиві //Set has true
+console.log('Set has', set2.delete(3))//Set has true
+console.log('Set has', set2.has(3))//Set has false
+console.log('Set has', set2.clear())//очистить масив
+console.log('Set has', set2.size) //0
+
+
+let set3 = new Set();
+
+let key = {}
+set3.add(key)
+console.log(set3.size)// 1
+key = null
+console.log(set3.size) // 1
+
+
+
+let set4 = new WeakSet();//якщо перестають існувати силки на елементи то дані видаляються для цього потрібно WeakSet
+
+let key1 = {}
+set4.add(key1)
+console.log(set4.size)// 1
+key1 = null
+console.log(set4.size) // 1
+</script> -->
+
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--Map WeakMap-->
+<!--Map - це обєктно подібний елмент key-value -->
+<!-- <script type="text/javascript">
+let map = new Map();
+
+map.set('name', 'WFM')
+map.set('age', 20);
+console.log(map)//Map(2) {"name" => "WFM", "age" => 20}
+console.log(map.get('name'));//WFM
+
+let obj1 = {};
+let obj2 = {};
+
+map.set(obj1, 10)
+map.set(obj2, 50)
+
+console.log(map.size)//4
+console.log('Has', map.has(obj2))//перевірка чи є такий обєкт в карті //Has true
+console.log('Has', map.delete(obj2))
+console.log(map.size)
+
+//Створення Msp за допомогою масиву
+let map1 = new Map([
+	['name', 'WFM'],
+	['age', 20]
+])
+
+for(let m of map1.entries()){//получимо value // entries - key i value разом 
+	//console.log(m)
+	console.log(`${m[0]} - ${m[1]}`) // використовуєм строковою шаблонізацією //Виведе name - WFM /n age - 20
+}
+
+let map2 = new Map();
+let key = {};
+map2.set(key,'key');
+console.log('Size', map2.size);//1
+key = null;
+console.log('Size', map2.size);//1
+
+let map3 = new WeakMap();//якщо перeстають існувати силки на елементи то дані видаляються для цього потрібно WeakMap
+let key1 = {};
+map3.set(key1, 'key');
+console.log('Size', map3.size);//undefined
+key3 = null;
+console.log('Size', map3.size);//undefined
+</script> -->
+
+
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--Map WeakMap-->
+<!--Система модулів імпортування та експортування файлів-->
+<!-- <script type="text/javascript">
+import  {name} from './extra.js'
+console.log(name);
+</script> -->
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--Символи (сьомий тип даних) - символи це сушність за допомогою яких можна робити приватні захищені поля || якщо записати в 2 змінні Symbol одинакові значення і порівняти то верне нам false-->
+<!-- <script type="text/javascript">
+let sym = Symbol('WFM')
+console.log(sym)//Symbol(WFM)
+console.log(typeof sym)//symbol
+
+let sym1 = Symbol('1')
+let sym2 = Symbol('1')
+console.log(sym1 === sym2)//false
+
+let s = Symbol('field')
+let s1 = Symbol('field')
+let obj = {
+	age: 20,
+	[s]: 'WFM'
+};
+console.log(obj['field'])//undefined
+console.log(obj[s])//WFM
+console.log(obj[s1])//undefined
+
+console.log(Object.getOwnPropertyNames(obj))//getOwnPropertyNames - повинно виввести поля які є в масиві
+console.log(Object.getOwnPropertySymbols(obj))//getOwnPropertySymbols - получить символи з масива
+
+let num = 1;
+let str = '2';
+let arr = [1,2];
+let obj1 = {name: 'WFM'}
+
+//перевіряємо чи є символ ітератор програма показала це означає що з String і Array ми можемо працювати в циклі  for of
+console.log('Number: ', typeof num[Symbol.iterator])//undefined
+console.log('String: ', typeof str[Symbol.iterator])//function
+console.log('Array: ', typeof arr[Symbol.iterator])//function
+console.log('Object: ', typeof obj1[Symbol.iterator])//undefined
+
+function createIterator(arrs){
+let count = 0;
+console.log(arrs)
+return{
+	next(){
+return count < arrs.length 
+    ? // тернарний оператор //якщо  count менший масив ? - тоді ми вернем обєкт
+   {value: arrs[count++], done: false }
+ : // : - інакше я верну 
+ {value: undefined, done: true}
+	}
+}
+}
+
+let iter = createIterator([1,2,3,4]);
+console.log(iter.next())
+console.log(iter.next())
+console.log(iter.next())
+console.log(iter.next())
+console.log(iter.next())
+console.log(iter.next())
+console.log(iter.next())
+console.log(iter.next())
+
+
+
+
+//Fibanachy
+
+let fib = {
+[Symbol.iterator](){
+	let pre =0, cur = 1
+	return{
+		next(){
+			[pre,cur] = [cur, pre + cur];
+			return{value: cur, done: false}
+		}
+	}
+} 	
+};
+
+for(let n of fib){
+	if(n>150) break;
+	console.log(n)
+}
+
+</script> -->
+
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--Генератори - це звичайні функції які позволяють почергово видавати результат-->
+ <!-- <script type="text/javascript">
+ function* gen(){//* - додаємо генератор
+ yield 11;   // для того щоб почергово видавати треба yield значення
+ yield 22;
+ yield 33;
+ }
+ let iter = gen()//створюємо генератор
+
+ console.log(iter.next())//{value: 11, done: false}
+ console.log(iter.next())//{value: 22, done: false}
+ console.log(iter.next())//{value: 33, done: false}
+ console.log(iter.next())//{value: undefined, done: true}
+
+ //приклад 2 генератор в генераторі
+console.log('Example 2')
+ function* g1(){
+	 yield 1;
+	 yield* g2();
+	 yield 4;
+ }
+
+ function* g2(){
+	 yield 2;
+	 yield 3;
+ }
+
+ let iter2 = g1();
+
+ console.log(iter2.next());
+ console.log(iter2.next());
+ console.log(iter2.next());
+ console.log(iter2.next());
+ console.log(iter2.next());
+
+ //приклад 3 генератор + масив
+ console.log('Example 3')
+ function* g3(){
+	 yield* [1,2,3];
+ }
+
+ let iter3 = g3();
+
+ console.log(iter3.next())
+ console.log(iter3.next())
+ console.log(iter3.next())
+ console.log(iter3.next())
+
+ //приклад 4 генератор робим цикл 
+ console.log('Example 3')
+function* getRange(start = 0, end = 100, step = 10){
+	while(start<end){
+		yield start;
+		start += step;
+
+	}
+}
+
+for(let n of getRange(10,50)){
+	console.log(n)//10, 20, 30, 40
+}
+
+//fabinachy
+
+let fib = {
+*[Symbol.iterator](){
+	let pre =0, cur = 1
+		for(;;){
+			[pre,cur] = [cur, pre + cur];
+			yield cur;
+		}
+} 	
+};
+
+for(let n of fib){
+	if(n>150) break;
+	console.log(n)
+}
+
+ </script> -->
+
+ <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--Нові методи-->
+<!--Робота з даними -->
+<!-- <script type="text/javascript">
+
+let obj1 = {a: 1};
+let obj2 = {b: 2, c : 3}
+
+Object.assign(obj1, obj2) //робимо щоб в obj1 були всі методи obj2(дані з obj2 записуємо в obj1)
+console.log('Obj1', obj1)
+console.log('Obj2', obj2)
+
+let obj3 = Object.assign({}, obj1, obj2);//obj1 i obj2 записуємо в obj3
+console.log('Obj3', obj3)
+
+let findItem = [1,2,3,4].find(x => x > 3)//4
+console.log(findItem)
+
+let str = 'Hello!';
+console.log('Repeat: ', str.repeat(3));//Repeat:  Hello!Hello!Hello! - продублювали лінійку 3 рази
+console.log('StartWith: ', str.startsWith('Hel'));//true | перевіряємо ци лінійка почнається з 'Hel' 
+console.log('StartWith: ', str.startsWith('Hel',1));//false |  1 - це позиція з якої починати шукати 'Hel'
+console.log('Includes: ', str.includes('Hel'));// true - перевіряємо чи 'Hel' є в нашій лінійці 
+</script> -->
+
+ <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--Promise - це сутність яка позволяє працювати з асинхронним кодом -->
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" >
+// function oldDelay(ms, func){
+// 	setTimeout(function(){
+//     func();
+// 	}, ms);
+// }
+// oldDelay(3000, function(){
+// 	console.log('Old delay passed!')
+// })
+//Переписуємо код вище
+
+// function delay(ms=1000){
+// 	return new Promise((resolve,reject)=>{
+// 		setTimeout(() => {
+//             reject();    
+// 		}, ms);
+// 	});
+// }
+
+// delay(4000).then(()=>{
+// 	console.log('new delay passed!')
+// }).catch(() =>{
+// 	console.info('error')
+// })
+
+//приклад2 api
+let promise = new Promise((resolve,reject)=>{
+
+	$.ajax({
+	url: 'http://date.jsontest.com/',
+	dataType: 'json',
+	success: function(response){
+resolve(response);//response.date
+	},
+	error: function(error){
+reject(error);
+	}
+});
+
+});
+
+promise.then((data)=>{
+	//console.log('Success ', data)
+	return data.date; //за допомогою return ми вертаємо в наступний .then
+}).then((date) => {
+	console.log('Date ', date)
+})
+ .catch((error) =>{
+	  	console.info(error)
+ })
+
+</script> -->
+</html>
